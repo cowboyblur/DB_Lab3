@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="text-center mb-4">更新论文信息</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="paper_id" class="form-label">论文ID</label>
+                <input type="text" class="form-control" id="paper_id" name="paper_id" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="title" class="form-label">新标题（留空则不修改）</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+            
+            <div class="mb-3">
+                <label for="journal" class="form-label">新期刊（留空则不修改）</label>
+                <input type="text" class="form-control" id="journal" name="journal">
+            </div>
+            
+            <div class="mb-3">
+                <label for="pub_year" class="form-label">新发表年份（留空则不修改）</label>
+                <input type="number" class="form-control" id="pub_year" name="pub_year">
+            </div>
+            
+            <div class="mb-3">
+                <label for="paper_type" class="form-label">新论文类型（留空则不修改）</label>
+                <select class="form-select" id="paper_type" name="paper_type">
+                    <option value="">不修改</option>
+                    <option value="1">full paper</option>
+                    <option value="2">short paper</option>
+                    <option value="3">poster paper</option>
+                    <option value="4">demo paper</option>
+                </select>
+            </div>
+            
+            <div class="mb-3">
+                <label for="paper_level" class="form-label">新论文级别（留空则不修改）</label>
+                <select class="form-select" id="paper_level" name="paper_level">
+                    <option value="">不修改</option>
+                    <option value="1">CCF-A</option>
+                    <option value="2">CCF-B</option>
+                    <option value="3">CCF-C</option>
+                    <option value="4">中文CCF-A</option>
+                    <option value="5">中文CCF-B</option>
+                    <option value="6">无级别</option>
+                </select>
+            </div>
+            
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">更新信息</button>
+                <a href="{{ url_for('papers_home') }}" class="btn btn-secondary">取消</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

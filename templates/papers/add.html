@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="text-center mb-4">添加论文</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="paper_id" class="form-label">论文ID</label>
+                <input type="text" class="form-control" id="paper_id" name="paper_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">论文标题</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="journal" class="form-label">期刊名称</label>
+                <input type="text" class="form-control" id="journal" name="journal" required>
+            </div>
+            <div class="mb-3">
+                <label for="pub_year" class="form-label">发表年份</label>
+                <input type="number" class="form-control" id="pub_year" name="pub_year" required>
+            </div>
+            <div class="mb-3">
+                <label for="paper_type" class="form-label">论文类型</label>
+                <select class="form-select" id="paper_type" name="paper_type" required>
+                    <option value="1">full paper</option>
+                    <option value="2">short paper</option>
+                    <option value="3">poster paper</option>
+                    <option value="4">demo paper</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="paper_level" class="form-label">论文级别</label>
+                <select class="form-select" id="paper_level" name="paper_level" required>
+                    <option value="1">CCF-A</option>
+                    <option value="2">CCF-B</option>
+                    <option value="3">CCF-C</option>
+                    <option value="4">中文CCF-A</option>
+                    <option value="5">中文CCF-B</option>
+                    <option value="6">无级别</option>
+                </select>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">作者信息</label>
+                <div id="authors-container">
+                    <!-- 作者信息将通过JavaScript动态添加 -->
+                </div>
+                <button type="button" class="btn btn-secondary mt-2" onclick="addAuthorField()">添加作者</button>
+                <input type="hidden" id="author_count" name="author_count" value="0">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    let authorCount = 0;
+    
+    function addAuthorField() {
+        authorCount++;
+        document.getElementById('author_count').value = authorCount;
+        
+        const container = document.getElementById('authors-container');
+        const authorDiv = document.createElement('div');
+        authorDiv.className = 'author-group mb-3 p-3 border rounded';
+        authorDiv.innerHTML = `
+            <h5>作者 ${authorCount}</h5>
+            <div class="mb-3">
+                <label for="author_${authorCount}_id" class="form-label">教师ID</label>
+                <input type="text" class="form-control" id="author_${authorCount}_id" name="author_${authorCount}_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="author_${authorCount}_rank" class="form-label">排名</label>
+                <input type="number" class="form-control" id="author_${authorCount}_rank" name="author_${authorCount}_rank" min="1" required>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="author_${authorCount}_corresponding" name="author_${authorCount}_corresponding">
+                <label class="form-check-label" for="author_${authorCount}_corresponding">通讯作者</label>
+            </div>
+        `;
+        container.appendChild(authorDiv);
+    }
+    
+    // 初始添加一个作者字段
+    window.onload = addAuthorField;
+</script>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="text-center mb-4">更新项目信息</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="project_id" class="form-label">项目ID</label>
+                <input type="text" class="form-control" id="project_id" name="project_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="project_name" class="form-label">项目名称（可选）</label>
+                <input type="text" class="form-control" id="project_name" name="project_name">
+            </div>
+            <div class="mb-3">
+                <label for="project_source" class="form-label">项目来源（可选）</label>
+                <input type="text" class="form-control" id="project_source" name="project_source">
+            </div>
+            <div class="mb-3">
+                <label for="project_type" class="form-label">项目类型（可选）</label>
+                <select class="form-select" id="project_type" name="project_type">
+                    <option value="">-- 不修改 --</option>
+                    <option value="1">国家级项目</option>
+                    <option value="2">省部级项目</option>
+                    <option value="3">市厅级项目</option>
+                    <option value="4">企业合作项目</option>
+                    <option value="5">其它类型项目</option>
+                </select>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="start_year" class="form-label">开始年份（可选）</label>
+                    <input type="number" class="form-control" id="start_year" name="start_year">
+                </div>
+                <div class="col-md-6">
+                    <label for="end_year" class="form-label">结束年份（可选）</label>
+                    <input type="number" class="form-control" id="end_year" name="end_year">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">更新</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

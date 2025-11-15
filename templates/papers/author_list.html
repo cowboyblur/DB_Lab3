@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">论文作者列表</h2>
+    
+    {% if not authors %}
+    <div class="alert alert-info">该论文没有作者记录</div>
+    {% else %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>排名</th>
+                    <th>教师ID</th>
+                    <th>姓名</th>
+                    <th>通讯作者</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for author in authors %}
+                <tr>
+                    <td>{{ author.author_rank }}</td>
+                    <td>{{ author.teacher_id }}</td>
+                    <td>{{ author.name }}</td>
+                    <td>{% if author.is_corresponding %}是{% else %}否{% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    
+    <div class="text-center mt-4">
+        <a href="{{ url_for('list_paper_authors') }}" class="btn btn-primary">新的查询</a>
+        <a href="{{ url_for('papers_home') }}" class="btn btn-secondary">返回论文管理</a>
+    </div>
+</div>
+{% endblock %}

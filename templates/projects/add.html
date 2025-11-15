@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="text-center mb-4">添加项目</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="project_id" class="form-label">项目ID</label>
+                <input type="text" class="form-control" id="project_id" name="project_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="project_name" class="form-label">项目名称</label>
+                <input type="text" class="form-control" id="project_name" name="project_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="project_source" class="form-label">项目来源</label>
+                <input type="text" class="form-control" id="project_source" name="project_source" required>
+            </div>
+            <div class="mb-3">
+                <label for="project_type" class="form-label">项目类型</label>
+                <select class="form-select" id="project_type" name="project_type" required>
+                    <option value="1">国家级项目</option>
+                    <option value="2">省部级项目</option>
+                    <option value="3">市厅级项目</option>
+                    <option value="4">企业合作项目</option>
+                    <option value="5">其它类型项目</option>
+                </select>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="start_year" class="form-label">开始年份</label>
+                    <input type="number" class="form-control" id="start_year" name="start_year" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="end_year" class="form-label">结束年份</label>
+                    <input type="number" class="form-control" id="end_year" name="end_year" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="total_funding" class="form-label">总经费</label>
+                <input type="number" step="0.01" class="form-control" id="total_funding" name="total_funding" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">参与者信息</label>
+                <div id="participants-container">
+                    <!-- 参与者信息将通过JavaScript动态添加 -->
+                </div>
+                <button type="button" class="btn btn-secondary mt-2" onclick="addParticipantField()">添加参与者</button>
+                <input type="hidden" id="participant_count" name="participant_count" value="0">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    let participantCount = 0;
+    
+    function addParticipantField() {
+        participantCount++;
+        document.getElementById('participant_count').value = participantCount;
+        
+        const container = document.getElementById('participants-container');
+        const participantDiv = document.createElement('div');
+        participantDiv.className = 'participant-group mb-3 p-3 border rounded';
+        participantDiv.innerHTML = `
+            <h5>参与者 ${participantCount}</h5>
+            <div class="mb-3">
+                <label for="participant_${participantCount}_id" class="form-label">教师ID</label>
+                <input type="text" class="form-control" id="participant_${participantCount}_id" name="participant_${participantCount}_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="participant_${participantCount}_rank" class="form-label">排名</label>
+                <input type="number" class="form-control" id="participant_${participantCount}_rank" name="participant_${participantCount}_rank" min="1" required>
+            </div>
+            <div class="mb-3">
+                <label for="participant_${participantCount}_funding" class="form-label">承担经费</label>
+                <input type="number" step="0.01" class="form-control" id="participant_${participantCount}_funding" name="participant_${participantCount}_funding" required>
+            </div>
+        `;
+        container.appendChild(participantDiv);
+    }
+    
+    // 初始添加一个参与者字段
+    window.onload = addParticipantField;
+</script>
+{% endblock %}

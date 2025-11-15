@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4">更新作者排名</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="paper_id" class="form-label">论文ID</label>
+                <input type="text" class="form-control" id="paper_id" name="paper_id" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="teacher_id" class="form-label">教师ID</label>
+                <input type="text" class="form-control" id="teacher_id" name="teacher_id" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="new_rank" class="form-label">新排名</label>
+                <input type="number" class="form-control" id="new_rank" name="new_rank" min="1" required>
+            </div>
+            
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">更新排名</button>
+                <a href="{{ url_for('papers_home') }}" class="btn btn-secondary">取消</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

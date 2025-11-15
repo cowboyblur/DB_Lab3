@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4">更新项目参与者经费</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="project_id" class="form-label">项目ID</label>
+                <input type="text" class="form-control" id="project_id" name="project_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="teacher_id" class="form-label">教师ID</label>
+                <input type="text" class="form-control" id="teacher_id" name="teacher_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="new_funding" class="form-label">新经费</label>
+                <input type="number" step="0.01" class="form-control" id="new_funding" name="new_funding" required>
+            </div>
+            <button type="submit" class="btn btn-primary">更新</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

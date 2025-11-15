@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4">添加论文作者</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="paper_id" class="form-label">论文ID</label>
+                <input type="text" class="form-control" id="paper_id" name="paper_id" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="teacher_id" class="form-label">教师ID</label>
+                <input type="text" class="form-control" id="teacher_id" name="teacher_id" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="author_rank" class="form-label">作者排名</label>
+                <input type="number" class="form-control" id="author_rank" name="author_rank" min="1" required>
+            </div>
+            
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="is_corresponding" name="is_corresponding">
+                <label class="form-check-label" for="is_corresponding">设为通讯作者</label>
+            </div>
+            
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">添加作者</button>
+                <a href="{{ url_for('papers_home') }}" class="btn btn-secondary">取消</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

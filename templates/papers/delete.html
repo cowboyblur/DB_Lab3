@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4">删除论文</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="paper_id" class="form-label">论文ID</label>
+                <input type="text" class="form-control" id="paper_id" name="paper_id" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-danger">删除论文</button>
+                <a href="{{ url_for('papers_home') }}" class="btn btn-secondary">取消</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

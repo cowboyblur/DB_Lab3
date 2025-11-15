@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-4">教师项目查询结果</h2>
+    
+    {% if projects %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>项目ID</th>
+                <th>项目名称</th>
+                <th>项目来源</th>
+                <th>类型</th>
+                <th>持续时间</th>
+                <th>排名</th>
+                <th>承担经费</th>
+                <th>经费占比</th>
+                <th>所有参与者</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+            <tr>
+                <td>{{ project.project_id }}</td>
+                <td>{{ project.project_name }}</td>
+                <td>{{ project.project_source }}</td>
+                <td>{{ project.project_type_text }}</td>
+                <td>{{ project.duration }}</td>
+                <td>{{ project.participant_rank }}/{{ project.participant_count }}</td>
+                <td>{{ project.funding }}</td>
+                <td>{{ project.funding_percentage }}%</td>
+                <td>{{ project.all_participants }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info">没有找到符合条件的项目</div>
+    {% endif %}
+    
+    <div class="text-center mt-4">
+        <a href="{{ url_for('query_projects') }}" class="btn btn-primary">返回查询</a>
+    </div>
+</div>
+{% endblock %}

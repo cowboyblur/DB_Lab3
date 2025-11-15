@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-4">项目参与者列表</h2>
+    
+    {% if participants %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>排名</th>
+                <th>教师ID</th>
+                <th>姓名</th>
+                <th>承担经费</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for participant in participants %}
+            <tr>
+                <td>{{ participant.participant_rank }}</td>
+                <td>{{ participant.teacher_id }}</td>
+                <td>{{ participant.name }}</td>
+                <td>{{ participant.funding }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info">没有找到参与者</div>
+    {% endif %}
+    
+    <div class="text-center mt-4">
+        <a href="{{ url_for('list_project_participants') }}" class="btn btn-primary">返回查询</a>
+    </div>
+</div>
+{% endblock %}

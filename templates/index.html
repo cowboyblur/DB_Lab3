@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>系统功能</h4>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    <a href="{{ url_for('papers_home') }}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">教师论文管理</h5>
+                        </div>
+                        <p class="mb-1">管理教师的论文发表情况，包括论文信息维护和作者关系管理</p>
+                    </a>
+                    <a href="{{ url_for('projects_home') }}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">教师项目管理</h5>
+                        </div>
+                        <p class="mb-1">管理教师的项目参与情况，包括项目信息和参与者管理</p>
+                    </a>
+                    <a href="{{ url_for('courses_home') }}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">教师课程管理</h5>
+                        </div>
+                        <p class="mb-1">管理教师的教学任务分配和课程信息</p>
+                    </a>
+                    <a href="{{ url_for('teacher_overview') }}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">教师总览</h5>
+                        </div>
+                        <p class="mb-1">查看教师教学科研工作的综合情况</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4>系统简介</h4>
+            </div>
+            <div class="card-body">
+                <p>欢迎使用教师教学科研登记系统！</p>
+                <p>本系统用于管理教师的教学、科研工作情况，包括论文发表、项目参与和课程教学等信息。</p>
+                <p>请点击上方功能链接进入相应模块。</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

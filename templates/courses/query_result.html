@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-4">教师授课情况查询结果</h2>
+    
+    {% if courses %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>课程号</th>
+                <th>课程名</th>
+                <th>课程类型</th>
+                <th>学期</th>
+                <th>主讲学时</th>
+                <th>学时占比</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td>{{ course.course_id }}</td>
+                <td>{{ course.course_name }}</td>
+                <td>{{ course.course_type_text }}</td>
+                <td>{{ course.year_semester }}</td>
+                <td>{{ course.teaching_hours }}</td>
+                <td>{{ course.hours_percentage }}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info">没有找到授课记录</div>
+    {% endif %}
+    
+    <div class="text-center mt-4">
+        <a href="{{ url_for('query_courses') }}" class="btn btn-primary">返回查询</a>
+    </div>
+</div>
+{% endblock %}

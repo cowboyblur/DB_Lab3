@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mb-4">教师论文管理</h2>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>论文基本操作</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('add_paper') }}" class="btn btn-primary w-100">添加论文</a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('delete_paper') }}" class="btn btn-danger w-100">删除论文</a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('update_paper') }}" class="btn btn-warning w-100">更新论文信息</a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('query_papers') }}" class="btn btn-info w-100">查询教师论文</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h4>论文作者关系管理</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('add_paper_author') }}" class="btn btn-success w-100">添加论文作者</a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('delete_paper_author') }}" class="btn btn-danger w-100">删除论文作者</a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('update_paper_author_rank') }}" class="btn btn-warning w-100">修改作者排名</a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('list_paper_authors') }}" class="btn btn-info w-100">查询论文作者</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

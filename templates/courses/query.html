@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4">查询教师授课情况</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="teacher_id" class="form-label">教师ID</label>
+                <input type="text" class="form-control" id="teacher_id" name="teacher_id" required>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="start_year" class="form-label">开始年份（可选）</label>
+                    <input type="number" class="form-control" id="start_year" name="start_year">
+                </div>
+                <div class="col-md-6">
+                    <label for="end_year" class="form-label">结束年份（可选）</label>
+                    <input type="number" class="form-control" id="end_year" name="end_year">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">查询</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

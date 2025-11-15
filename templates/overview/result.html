@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-4">教师教学科研工作统计</h2>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>教师基本信息</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3"><strong>工号:</strong> {{ teacher.teacher_id }}</div>
+                <div class="col-md-3"><strong>姓名:</strong> {{ teacher.name }}</div>
+                <div class="col-md-3"><strong>性别:</strong> {{ teacher.gender_text }}</div>
+                <div class="col-md-3"><strong>职称:</strong> {{ teacher.title_text }}</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>教学情况</h3>
+        </div>
+        <div class="card-body">
+            {% if error_courses %}
+                <div class="alert alert-danger">{{ error_courses }}</div>
+            {% elif courses %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>课程号</th>
+                            <th>课程名</th>
+                            <th>主讲学时</th>
+                            <th>学期</th>
+                            <th>学时占比</th>
+                            <th>其他主讲教师</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for course in courses %}
+                        <tr>
+                            <td>{{ course.course_id }}</td>
+                            <td>{{ course.course_name }}</td>
+                            <td>{{ course.teaching_hours }}</td>
+                            <td>{{ course.year_semester }}</td>
+                            <td>{{ course.hours_percentage }}%</td>
+                            <td>{{ course.all_teachers }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>该时间段内没有教学记录</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>发表论文情况</h3>
+        </div>
+        <div class="card-body">
+            {% if error_papers %}
+                <div class="alert alert-danger">{{ error_papers }}</div>
+            {% elif papers %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>论文标题</th>
+                            <th>期刊</th>
+                            <th>年份</th>
+                            <th>级别</th>
+                            <th>排名</th>
+                            <th>通讯作者</th>
+                            <th>所有作者</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for paper in papers %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ paper.title }}</td>
+                            <td>{{ paper.journal }}</td>
+                            <td>{{ paper.pub_year }}</td>
+                            <td>{{ paper.paper_level_text }}</td>
+                            <td>{{ paper.author_rank }}/{{ paper.author_count }}</td>
+                            <td>{{ paper.is_corresponding_text }}</td>
+                            <td>{{ paper.all_authors }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>该时间段内没有发表论文</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>承担项目情况</h3>
+        </div>
+        <div class="card-body">
+            {% if error_projects %}
+                <div class="alert alert-danger">{{ error_projects }}</div>
+            {% elif projects %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>项目名称</th>
+                            <th>项目来源</th>
+                            <th>类型</th>
+                            <th>持续时间</th>
+                            <th>排名</th>
+                            <th>承担经费</th>
+                            <th>经费占比</th>
+                            <th>所有参与者</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for project in projects %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ project.project_name }}</td>
+                            <td>{{ project.project_source }}</td>
+                            <td>{{ project.project_type_text }}</td>
+                            <td>{{ project.duration }}</td>
+                            <td>{{ project.participant_rank }}/{{ project.participant_count }}</td>
+                            <td>{{ project.funding }}</td>
+                            <td>{{ project.funding_percentage }}%</td>
+                            <td>{{ project.all_participants }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>该时间段内没有承担项目</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="text-center mt-4">
+        <a href="{{ url_for('teacher_overview') }}" class="btn btn-primary">返回查询</a>
+        <button class="btn btn-success ms-2" onclick="exportToPDF()">导出为 PDF</button>
+    </div>
+
+</div>
+{% endblock %}

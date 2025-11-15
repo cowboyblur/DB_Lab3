@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="text-center mb-4">移除教学任务</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="course_id" class="form-label">课程ID</label>
+                <input type="text" class="form-control" id="course_id" name="course_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="teacher_id" class="form-label">教师ID</label>
+                <input type="text" class="form-control" id="teacher_id" name="teacher_id" required>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="year" class="form-label">年份</label>
+                    <input type="number" class="form-control" id="year" name="year" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="semester" class="form-label">学期</label>
+                    <select class="form-select" id="semester" name="semester" required>
+                        <option value="1">春季学期</option>
+                        <option value="2">夏季学期</option>
+                        <option value="3">秋季学期</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-danger">移除</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
